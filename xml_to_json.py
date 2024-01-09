@@ -1507,5 +1507,7 @@ xml_string = """
 </yml_catalog>
 """
 
+
+# Пример
 json_output = xml_to_list_of_dicts(xml_string)
 print(json_output)
