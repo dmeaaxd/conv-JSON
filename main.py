@@ -1,16 +1,17 @@
 import xmltodict
 import json
 
-def xml_to_json(xml_string):
-    # Преобразование XML в словарь
+
+def xml_to_list_of_dicts(xml_string):
     data_dict = xmltodict.parse(xml_string)
 
-    # Преобразование словаря в JSON
-    json_data = json.dumps(data_dict, indent=2)
+    root_key = next(iter(data_dict))
+    data_list = data_dict[root_key]
+
+    json_data = json.dumps(data_list, indent=2)
 
     return json_data
 
-# Пример использования
 xml_string = """
 <yml_catalog date="2024-01-09T00:56">
 <shop>
@@ -1506,5 +1507,5 @@ xml_string = """
 </yml_catalog>
 """
 
-json_output = xml_to_json(xml_string)
+json_output = xml_to_list_of_dicts(xml_string)
 print(json_output)
